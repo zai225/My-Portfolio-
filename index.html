@@ -241,13 +241,6 @@
                           class="absolute -bottom-8 opacity-0 group-hover/icon:opacity-100 transition-all text-sm font-medium">
                           GitHub</div>
                       </a>
-                      <a href="https://www.instagram.com/z_ahmedd10/" target="_blank"
-                        class="group/icon relative w-12 h-12 flex items-center justify-center bg-white/10 rounded-xl hover:bg-white/30 transition-all duration-300 hover:scale-110">
-                        <i class="ri-instagram-fill text-white text-xl group-hover/icon:text-2xl transition-all"></i>
-                        <div
-                          class="absolute -bottom-8 opacity-0 group-hover/icon:opacity-100 transition-all text-sm font-medium">
-                          Instagram</div>
-                      </a>
                     </div>
                   </div>
                 </div>
@@ -661,7 +654,14 @@ ${project.tags.map(tag => `
 
       if (validateForm(e.target)) {
         const formData = new FormData(e.target);
-        // Here you would typically send the form data to your backend
+        const data = {
+        name: formData.get('name'),
+        email: formData.get('email'), 
+        message: formData.get('message')
+        };
+        // Send email using mailto
+        const mailtoLink = `mailto:zaidu2020@gamil.com?subject=Contact Form Submission from ${data.name}&body=Name: ${data.name}%0D%0AEmail: ${data.email}%0D%0A%0D%0AMessage:%0D%0A${data.message}`;
+        window.location.href = mailtoLink;
 
         showSuccessPopup();
         e.target.reset();
